@@ -1,10 +1,4 @@
-// ### What is the difference between call() and apply()?
-// Both call() and apply() are methods that allow you to execute a function with a specified 'this' context and arguments
 
-// The difference between call and apply
-// The main difference between call() and apply() is how they handle the arguments:
- // -> call() accepts arguments individually, functionName.call(thisContext, arg1, arg2).
- // -> apply() accepts arguments as an array, functionName.apply(thisContext, [arg1, arg2]).
 
 
 
@@ -38,4 +32,23 @@ const employee = {
 };
 
 console.log(Task.introduce.call(employee, 'Manger', 'Sales'));  // Output: Hello, I am Sarah, Manager in Sales
-console.log(Task.introduce.apply(employee, ['Manager', 'Marketting']));
+console.log(Task.introduce.apply(employee, ['Manager', 'Marketting']));  // Output: Hello, I am Sarah, Manager in Marketting
+
+const personName = {
+    name: 'John',
+    greet: function () {
+        return `Hello, ${this.name}`;
+    },
+};
+
+const role = {
+    name: 'Sarah',
+};
+
+// Using call() - executes the function immdiately with manager's context
+console.log(personName.greet.call(role));
+
+// Using bind() - returns a new function
+
+const boundGreet = personName.greet.bind(role);
+console.log(boundGreet());
